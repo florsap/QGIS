@@ -311,6 +311,12 @@
       "dependencies": [
         "sfcgal"
       ]
+    },
+    "hana": {
+      "description": "Build with SAP HANA Spatial support",
+      "dependencies": [
+        "odbccpp"
+      ]
     }
   }
 }
