@@ -1,9 +1,23 @@
-cmake_minimum_required(VERSION 3.10)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.12)
 
-set(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_STANDARD 11)
 
-project(odbccpp)
+PROJECT(odbccpp)
 
-find_package(ODBC REQUIRED)
+INCLUDE(GNUInstallDirs)
+INCLUDE(CMakePackageConfigHelpers)
 
-add_subdirectory(src)
+FIND_PACKAGE(ODBC REQUIRED)
+
+ADD_SUBDIRECTORY(src)
+
+CONFIGURE_PACKAGE_CONFIG_FILE(
+    cmake/odbccppConfig.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/odbccppConfig.cmake"
+    INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/odbccpp"
+)
+
+INSTALL(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/odbccppConfig.cmake"
+    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/odbccpp"
+)
